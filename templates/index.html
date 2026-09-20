@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>AgriSight – Smart Fruit Harvesting Robot</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+          rel="stylesheet">
+
+    <link href="static/static_new/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="static/static_new/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="static/static_new/css/templatemo-tiya-golf-club.css" rel="stylesheet">
+
+    <!--
+
+    TemplateMo 587 Tiya Golf Club
+
+    https://templatemo.com/tm-587-tiya-golf-club
+
+    -->
+</head>
+
+<body>
+
+<main>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center">
+                <img src="static/static_new/logo.png" class="navbar-brand-image" alt="Fruit Identification">
+                <span class="navbar-brand-text">
+                            AgriSight
+                            <small>Smart Harvesting Robot</small>
+                        </span>
+            </a>
+
+            <div class="d-lg-none ms-auto me-3">
+                <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="#offcanvasExample"
+                   role="button" aria-controls="offcanvasExample">Member Login</a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_1">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_2">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_3">Methodology</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_4">Register</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_5">Contact Us</a>
+                    </li>
+
+
+
+
+                </ul>
+
+                <div class="d-none d-lg-block ms-lg-3">
+                    <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="#offcanvasExample"
+                       role="button" aria-controls="offcanvasExample">Member Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample"
+         aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Member Login</h5>
+
+            <button id="closeButton" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body d-flex flex-column">
+
+
+            <form class="custom-form member-login-form" action="{{ url_for('login') }}" method="post" role="form">
+
+    <div class="member-login-form-body">
+
+        <div class="mb-4">
+            <label class="form-label mb-2" for="email">Email Address</label>
+
+            <input type="email"
+                   name="email"
+                   id="email"
+                   class="form-control"
+                   placeholder="Enter your email"
+                   required>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label mb-2" for="password">Password</label>
+
+            <input type="password"
+                   name="password"
+                   id="password"
+                   class="form-control"
+                   placeholder="Password"
+                   required>
+        </div>
+
+        <div class="col-lg-5 col-md-7 col-8 mx-auto">
+            <button type="submit" class="form-control">Login</button>
+        </div>
+
+        <div class="text-center my-4">
+            <a href="/otp_login">Forgotten password? <br> Login With OTP</a>
+        </div>
+
+    </div>
+
+</form>
+
+            <div class="mt-auto mb-5">
+                <p>
+                    <a href="#section_3" class="contact-link">
+                        Don't have an account ?
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#3d405b" fill-opacity="1"
+                  d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+        </svg>
+    </div>
+
+
+<div class="toast-container position-fixed end-0 p-3"
+     style="top: 110px; z-index: 1055;">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="toast align-items-center text-bg-{{ category }} border-0 show mb-2" role="alert">
+        <div class="d-flex">
+          <div class="toast-body">
+            {{ message }}
+          </div>
+          <button type="button"
+                  class="btn-close btn-close-white me-2 m-auto"
+                  data-bs-dismiss="toast"></button>
+        </div>
+      </div>
+    {% endfor %}
+  {% endwith %}
+</div>
+
+    <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+
+        <div class="section-overlay"></div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#3d405b" fill-opacity="1"
+                  d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path>
+        </svg>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                    <h2 class="text-white">AI Based Robotics Project</h2>
+
+                    <h1 class="cd-headline rotate-1 text-white mb-4 pb-2">
+                        <span>Fruit Harvesting System Using</span>
+                        <span class="cd-words-wrapper">
+                                    <b class="is-visible">YOLO v8</b>
+                                    <b>Raspberry Pi</b>
+                                    <b>Computer Vision</b>
+                                    <b>Robotics</b>
+                                </span>
+                    </h1>
+
+                    <div class="custom-btn-group">
+                        <a href="#section_2" class="btn custom-btn smoothscroll me-3">Explore Project</a>
+
+                        <a href="#section_4" class="link smoothscroll">Become a member</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fill-opacity="1"
+                  d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+        </svg>
+    </section>
+
+
+    <section class="about-section section-padding" id="section_2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12 col-12 text-center">
+                    <h2 class="mb-lg-5 mb-4">About Project</h2>
+                </div>
+
+                <div class="col-lg-5 col-12 me-auto mb-4 mb-lg-0">
+                    <h3 class="mb-3">AgriSight – Smart Harvesting Robot</h3>
+                    <p>
+                        AgriSight is an intelligent robotic system designed to automate fruit harvesting
+                    using Artificial Intelligence and Computer Vision.
+                    </p>
+
+                    <p>
+                        The system uses <b>YOLOv8</b> for real-time fruit detection and a robotic arm
+                    controlled by <b>Raspberry Pi</b> to pick fruits efficiently without damage.
+                    </p>
+
+                    <p>
+                    It reduces labor dependency, improves harvesting speed, and enables
+                    smart farming solutions.
+                    </p>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-0">
+                    <div class="member-block">
+                        <div class="member-block-image-wrap">
+                            <img src="static/static_new/images/robot_4.png" class="member-block-image img-fluid"
+                                 alt="Input Image" style="height:230px;">
+
+
+                        </div>
+
+                        <div class="member-block-info d-flex align-items-center">
+                            <h4>Ai-based Harvesting Robot</h4>
+
+                            <p class="ms-auto">Hardware</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="member-block">
+                        <div class="member-block-image-wrap">
+                            <img src="static/static_new/yolo_output.png" class="member-block-image img-fluid"
+                                 alt="Output Image" style="height:230px;">
+
+                        </div>
+
+                        <div class="member-block-info d-flex align-items-center">
+                            <h4>Result After Detection</h4>
+
+                            <p class="ms-auto">Output</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section-bg-image" id="section_3">
+        <svg viewBox="0 0 1265 144" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path fill="rgba(255, 255, 255, 1)" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)" d="M 327 20 C 445.5 20 445.5 89 564 89 L 564 89 L 564 0 L 327 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)" d="M 563 89 C 724.5 89 724.5 48 886 48 L 886 48 L 886 0 L 563 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)" d="M 885 48 C 1006.5 48 1006.5 67 1128 67 L 1128 67 L 1128 0 L 885 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)" d="M 1127 67 C 1196 67 1196 0 1265 0 L 1265 0 L 1265 0 L 1127 0 Z"
+                  stroke-width="0"></path>
+        </svg>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12 col-12 text-center mx-auto mb-lg-5 mb-4">
+                    <h2 style="color:white;"><span>Project </span> Methodology & Registration</h2>
+                </div>
+
+                <div class="col-lg-6 col-12 mb-3 mb-lg-0">
+                    <h4 class="mb-4 pb-lg-2" style="color:white;">Details</h4>
+
+                    <div class="table-responsive">
+                        <table class="table text-center">
+                            <thead>
+                            <tr>
+                                <th style="width: 34%;">Step</th>
+
+                                <th style="width: 100%;">Description</th>
+
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <th scope="row" class="text-start" style="color:white;">Image Capture</th>
+
+                                <td>
+                                    <i class="bi-check-circle-fill">
+                                        Camera captures real-time fruit image
+                                    </i>
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <th scope="row" class="text-start">Fruit Detection</th>
+
+                                <td>
+                                    <i class="bi-check-circle-fill">
+                                        YOLOv8 detects fruits in the image
+                                    </i>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <th scope="row" class="text-start" style="color:white;">Ripeness Classification</th>
+
+                                <td>
+                                    <i class="bi-check-circle-fill">
+                                        System identifies ripe fruits
+                                    </i>
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <th scope="row" class="text-start">Navigation</th>
+
+                                <td>
+                                    <i class="bi-check-circle-fill">
+                                        Robot moves towards target fruit
+                                    </i>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <th scope="row" class="text-start" style="color:white;">Harvesting</th>
+
+                                <td>
+                                    <i class="bi-check-circle-fill">
+                                        Robotic arm picks fruit carefully
+                                    </i>
+
+                                </td>
+
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-12 mx-auto" id="section_4">
+                    <h4 class="mb-4 pb-lg-2" style="color:white;">Register here !</h4>
+                    <form action="{{ url_for('register') }}" method="post" class="custom-form membership-form shadow-lg" role="form">
+                        <h4 class="text-white mb-4">User Registration</h4>
+
+                        <div class="form-floating">
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Username"
+                                   required="">
+                            <label for="username">Username</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control"
+                                   placeholder="Email address" required="">
+                            <label for="email">Email address</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="password" name="password" id="password" class="form-control"
+                                   placeholder="Password" required="">
+                            <label for="password">Password</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control"
+                                   placeholder="Confirm Password" required="">
+                            <label for="confirm_password">Confirm Password</label>
+                        </div>
+
+                        <button type="submit" class="form-control">Register</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <svg viewBox="0 0 1265 144" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path fill="rgba(255, 255, 255, 1)" d="M 0 40 C 164 40 164 20 328 20 L 328 20 L 328 0 L 0 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)" d="M 327 20 C 445.5 20 445.5 89 564 89 L 564 89 L 564 0 L 327 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)" d="M 563 89 C 724.5 89 724.5 48 886 48 L 886 48 L 886 0 L 563 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)" d="M 885 48 C 1006.5 48 1006.5 67 1128 67 L 1128 67 L 1128 0 L 885 0 Z"
+                  stroke-width="0"></path>
+            <path fill="rgba(255, 255, 255, 1)" d="M 1127 67 C 1196 67 1196 0 1265 0 L 1265 0 L 1265 0 L 1127 0 Z"
+                  stroke-width="0"></path>
+        </svg>
+    </section>
+
+
+
+
+    <section class="contact-section section-padding" id="section_5">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-5 col-12">
+<form action="/contact" method="post" class="custom-form contact-form" role="form">                        <h2 class="mb-4 pb-2">Contact Us</h2>
+                            <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-floating">
+                                    <input type="text" name="full-name" id="full-name" class="form-control"
+                                           placeholder="Full Name" required="">
+
+                                    <label for="floatingInput">Full Name</label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-floating">
+                                    <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*"
+                                           class="form-control" placeholder="Email address" required="">
+
+                                    <label for="floatingInput">Email address</label>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="message" name="message"
+                                              placeholder="Describe message here"></textarea>
+
+                                    <label for="floatingTextarea">Message</label>
+                                </div>
+
+                                <button type="submit" class="form-control">Submit Form</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="contact-info mt-5">
+                        <div class="contact-info-item">
+                            <div class="contact-info-body">
+                                <strong>SKN College of Engineering <br>
+                                    Vadgaon Budruk, Pune, Maharashtra.</strong>
+
+                                <p class="mt-2 mb-1">
+                                    <a class="contact-link">
+                                        ( +91 )
+                                        8999****60
+                                    </a>
+                                </p>
+
+                                <p class="mb-0">
+                                    <a class="contact-link">
+                                        info@AgriSightRobot.com
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class="contact-info-footer">
+                                <a href="https://maps.app.goo.gl/s26hA2v7eb3f4KRy9" target="_blank">Directions</a>
+                            </div>
+                        </div>
+
+                        <img src="static/static_new/images/WorldMap.svg" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-12 me-auto mb-5 mb-lg-0">
+                <a class="navbar-brand d-flex align-items-center">
+                    <img src="static/static_new/logo.png" class="navbar-brand-image" alt=""
+                         style="height:200px; width:300px;">
+                    <span class="navbar-brand-text">
+                                AgriSight
+                                <br>Smart Harvesting Robot
+                            </span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-12">
+                <h5 class="site-footer-title mb-4">
+                </h5>
+
+                <br>
+                <p class="copyright-text">Copyright © 2026 <br> AgriSight - Smart Harvesting Robot</p>
+            </div>
+
+        </div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#81B29A" fill-opacity="1"
+              d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+    </svg>
+</footer>
+
+
+<!-- JAVASCRIPT FILES -->
+<script src="static/static_new/js/jquery.min.js"></script>
+<script src="static/static_new/js/bootstrap.bundle.min.js"></script>
+<script src="static/static_new/js/jquery.sticky.js"></script>
+<script src="static/static_new/js/click-scroll.js"></script>
+<script src="static/static_new/js/animated-headline.js"></script>
+<script src="static/static_new/js/modernizr.js"></script>
+<script src="static/static_new/js/custom.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fruit Detection</title>
+  <link href="/static/css/main.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <nav>
+    <a href="#home" class="nav-link">Home</a>
+    <a href="/about" class="nav-link">About</a>
+    <a href="/login" class="nav-link">Login</a>
+    <a href="/register" class="nav-link">Signup</a>
+    <a href="/admin-login" class="nav-link">Admin</a>
+  </nav>
+
+
+  <div class="content">
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+  </div>
+
+
+<!--<section class="home-section">-->
+<!--  <div class="overlay">-->
+<!--    <h1>Introducing AI-Powered Eyes That Never Sleep</h1>-->
+<!--    <p>Built on Cutting-Edge AI and Web Technologies</p>-->
+<!--  </div>-->
+<!--</section>-->
+
+
+
+
+<section id="home" class="home-section-coursol">
+  <div class="carousel-slide" style="background-image: url('/static/images/download.jpg')"></div>
+  <div class="carousel-slide" style="background-image: url('/static/images/download (1).jpg')"></div>
+  <div class="carousel-slide" style="background-image: url('/static/images/download (2).jpg')"></div>
+  <div class="carousel-slide" style="background-image: url('/static/images/download (3).jpg')"></div>
+
+
+
+</section>
+
+
+<script>
+const slides = document.querySelectorAll('.home-section-coursol .carousel-slide');
+let currentIndex = 0;
+
+function showNextSlide() {
+  slides.forEach((slide, index) => {
+    slide.classList.remove('active');
+  });
+  slides[currentIndex].classList.add('active');
+  currentIndex = (currentIndex + 1) % slides.length;
+}
+
+// Initialize
+showNextSlide();
+setInterval(showNextSlide, 3000); // change every 3 seconds
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <h3>ML – Based Fruit Identification System
+Using Leaf Image</h3>
+    <p>Experience The Future Today</p>
+
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Signup</a></li>
+    </ul>
+
+    <p class="footer-credit">© 2025 Fruit Detection</p>
+  </div>
+</footer>
+
+</body>
+</html>

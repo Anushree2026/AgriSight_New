@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - ShopSmart</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .graph-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .graph-box {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 45%;
+      min-width: 300px;
+      text-align: center;
+    }
+    .dashboard-header {
+      margin-top: 30px;
+    }
+
+    .dashboard-boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 40px auto;
+    max-width: 1200px;
+    gap: 20px;
+  }
+
+  .dashboard-box {
+    flex: 1 1 calc(25% - 20px);
+    color: black;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    font-size: 1.2rem;
+  }
+  </style>
+</head>
+<body>
+
+<!-- Notification Script -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    {% for message in messages %}
+    swal("{{message}}");
+    {% endfor %}
+</script>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">ShopSmart Admin</a>
+    <div class="ms-auto d-flex align-items-center">
+      <a href="/view_user/" class="btn btn-outline-light me-3">View Users</a>
+      <a href="/review_list/" class="btn btn-outline-light me-3">View Reviews</a>
+      <a href="/logout/" class="btn btn-outline-light">Logout</a>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Dashboard Content -->
+<div class="container dashboard-header text-center">
+  <h1 class="mt-4">Welcome, Admin!</h1>
+  <p class="lead">Manage your users, reviews, and monitor platform insights at a glance.</p>
+</div>
+
+<!-- Summary Boxes -->
+<div class="dashboard-boxes">
+  <div class="dashboard-box" style="background-color:red;">
+    <h4>✅ Total <br>Products</h4>
+    <p><strong>{{total_products}}</strong></p>
+  </div>
+  <div class="dashboard-box" style="background-color:green;">
+    <h4>👥 Total <br>Users</h4>
+    <p><strong>{{total_users}}</strong></p>
+  </div>
+    <div class="dashboard-box" style="background-color:yellow;">
+    <h4>✅ Total <br>Reviews</h4>
+    <p><strong>{{total_reviews}}</strong></p>
+  </div>
+  <div class="dashboard-box" style="background-color:blue;">
+    <h4>🛒 Total Items Purchased</h4>
+    <p><strong>560</strong></p>
+  </div>
+  <div class="dashboard-box" style="background-color:orange;">
+    <h4>💰 Total Sales Generated</h4>
+    <p><strong>₹1,20,000</strong></p>
+  </div>
+</div>
+
+<!-- Graphs -->
+<div class="container graph-container">
+  <div class="graph-box">
+    <h5>Bar Chart</h5>
+    <img src="data:image/png;base64,{{ bar_image_data }}" alt="Bar Plot" class="img-fluid">
+  </div>
+  <div class="graph-box">
+    <h5>Review Distribution</h5>
+    <img src="data:image/png;base64,{{ pie_image_data }}" alt="Pie Chart" class="img-fluid">
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

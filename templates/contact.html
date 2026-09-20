@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fruit Detection
+</title>
+  <link href="/static/css/main.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <nav>
+    <ul class="footer-links">
+      <li><a href="/user_home">Home</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>  </nav>
+
+
+
+<section id="login" class="auth-section">
+
+
+
+  <div class="auth-container">
+
+    <!-- Login Form -->
+    <div class="auth-box">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+      <h3>Contact</h3>
+
+
+
+        <form method="POST">
+        <input type="text" name="name" placeholder="Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="number" name="phone" placeholder="Mobile Number" required />
+
+        <input type="text" name="desc" placeholder="Query" required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <h3>ML – Based Fruit Identification System
+Using Leaf Image
+</h3>
+    <p>Experience The Future Today</p>
+
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Signup</a></li>
+    </ul>
+
+    <p class="footer-credit">© 2025 Fruit Detection. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
+
+
+
+
+

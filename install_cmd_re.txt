@@ -1,0 +1,18 @@
+make change in the path : from rpi ram to SD card storage
+necessary
+
+export TMPDIR=/home/skillcraft/tmp
+mkdir -p /home/skillcraft/tmp
+
+
+create virtual env like this. due to this our env can have access of system libraraies
+python3 -m venv --system-site-packages testenv
+
+run these commands line by line to avoid unncessary libraray installation
+
+pip install ultralytics --no-deps
+pip install numpy opencv-python pillow pyyaml requests scipy matplotlib
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+pip install flask flask_mail flask_sqlalchemy
+pip install psutil polars ultralytics-thop
+pip install picamera2

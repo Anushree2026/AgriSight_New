@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fruit Detection</title>
+  <link href="/static/css/main.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-link">Home</a>
+    <a href="/about/" class="nav-link">About</a>
+    <a href="/user_login/" class="nav-link">Login</a>
+    <a href="/user_registration/" class="nav-link">Signup</a>
+    <a href="/admin_login/" class="nav-link">Admin</a>
+  </nav>
+
+
+
+<section id="login" class="auth-section">
+
+
+
+  <div class="auth-container">
+
+    <!-- Login Form -->
+    <div class="auth-box">
+
+
+      <h3>Admin Login</h3>
+      <form method="POST">
+
+        <input name="admin_username" placeholder="Admin username or Email" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+          <br>
+
+          <a href="/admin_registration/" style="color:#ffe082;">Registration</a>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <h3>ML – Based Fruit Identification System
+Using Leaf Image</h3>
+    <p>Experience The Future Today</p>
+
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="about/">About</a></li>
+      <li><a href="user_login/">Login</a></li>
+      <li><a href="user_registration/">Signup</a></li>
+        <li><a href="admin_login/">Admin</a></li>
+    </ul>
+
+    <p class="footer-credit">© 2025 Fruit Detection. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    {% for message in messages %}
+    swal("{{message}}");
+    {% endfor %}
+</script>
+
+</body>
+</html>
