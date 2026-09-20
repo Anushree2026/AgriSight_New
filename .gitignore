@@ -11,8 +11,7 @@ instance/
 .idea/
 .vscode/
 
-# YOLO model files
-*.pt
+
 
 # OS
 .DS_Store
