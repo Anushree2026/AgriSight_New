@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Flask
+instance/
+
+# IDE
+.idea/
+.vscode/
+
+# YOLO model files
+*.pt
+
+# OS
+.DS_Store
+Thumbs.db
